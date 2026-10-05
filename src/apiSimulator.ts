@@ -1,10 +1,24 @@
+class NetworkError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "NetworkError";
+  }
+}
+
+class DataError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "DataError";
+  }
+}
+
 export const fetchProductCatalog = (): Promise<
   { id: number; name: string; price: number }[]
 > => {
   return new Promise(async (resolve, reject) => {
     setTimeout(() => {
       if (Math.random() < 0.2) {
-        reject("Failed to fetch product catalog");
+        reject(new DataError("Failed to fetch product catalog"));
       }
 
       resolve([
@@ -21,7 +35,11 @@ export const fetchProductReviews = (
   return new Promise(async (resolve, reject) => {
     setTimeout(() => {
       if (Math.random() < 0.2) {
-        reject(`Failed to fetch reviews for product ID ${productId}`);
+        reject(
+          new NetworkError(
+            `Failed to fetch reviews for product ID ${productId}`,
+          ),
+        );
       }
 
       resolve([
@@ -40,11 +58,10 @@ export const fetchSalesReport = (): Promise<{
   return new Promise(async (resolve, reject) => {
     setTimeout(() => {
       if (Math.random() < 0.2) {
-        reject("Failed to fetch sales report");
+        reject(new DataError("Failed to fetch sales report"));
       }
 
       resolve({ totalSales: 1263, unitsSold: 3016, averagePrice: 3.23 });
     }, 1000);
   });
 };
-
