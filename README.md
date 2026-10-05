@@ -1,0 +1,6 @@
+- Why is it important to handle errors for each individual API call rather than just at the end of the promise chain?
+  - If you handle it only for the whole chain it will make the error you get out less specific and it will be harder to know where it came from.
+- How does using custom error classes improve debugging and error identification?
+  - Custom error classes allow you to give context to why the error happened in a way that is specific to uour project.
+- When might a retry mechanism be more effective than an immediate failure response?
+  - When you're waiting for a resource to be available and need to ping to that resource to see if it existss.
