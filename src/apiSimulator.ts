@@ -1,6 +1,4 @@
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-const fetchProductCatalog = (): Promise<
+export const fetchProductCatalog = (): Promise<
   { id: number; name: string; price: number }[]
 > => {
   return new Promise(async (resolve, reject) => {
@@ -17,7 +15,7 @@ const fetchProductCatalog = (): Promise<
   });
 };
 
-const fetchProductReviews = (
+export const fetchProductReviews = (
   productId: number,
 ): Promise<{ rating: number; userId: number; date: string }[]> => {
   return new Promise(async (resolve, reject) => {
@@ -34,7 +32,7 @@ const fetchProductReviews = (
   });
 };
 
-const fetchSalesReport = (): Promise<{
+export const fetchSalesReport = (): Promise<{
   totalSales: number;
   unitsSold: number;
   averagePrice: number;
@@ -50,4 +48,3 @@ const fetchSalesReport = (): Promise<{
   });
 };
 
-export = { fetchProductCatalog, fetchProductReviews, fetchSalesReport };
